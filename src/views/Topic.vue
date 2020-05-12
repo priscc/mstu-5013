@@ -26,8 +26,7 @@
 			</v-card>
 		</v-col>
 		<!-- Right content -->
-		
-		<events-page :causes="causes"/>
+		<events-page :causes="causes" :turningP="turningP" :effects="effects"/>
 	</v-row>
 
 </v-container>
@@ -53,36 +52,39 @@ export default {
 			  { title: 'Terminology', icon: "mdi-view-dashboard"},
 			  { title: 'Historical People', icon: "mdi-account"}
 			],
-			events: [],
-			causes: []
+			causes: [],
+			turningP: [],
+			effects: []
 		}
 	},
 	methods: {
 		async readSubtopic() {
-			// *** this are just for Causes Events ***
-			let todosRef = await db.collection(this.id).doc("Events").get();
+			let todosRef = db.collection(this.id).doc("Events");
 
-			console.log("in here", this.events);
-			// todosRef.then(snapshot => {
-			// 	var appData = [];
-			// 	snapshot.forEach(doc => {
-			// 		console.log("in here", this.events);
-			// 		this.events = doc.data().ArrayOfevents;
-			// 	});
-			// });
-			// this.orgEvents();
-		}, 
-		orgEvents(){
-			var v = this.events;
-			// console.log("in here", v);
-			var appData = [];
-			for (var i = 0; i < v.length; i++) {
-				if( v[i].eventType == "Cause"){
-					this.causes.push(v[i]);
-				}
-				
-			}
-			// console.log("causes", this.causes);
+			var x = await todosRef.get().then(function(doc){
+				var all = [];
+				var c = [];
+				var tp = [];
+				var e = [];
+				doc.data().events.forEach(doc => {
+					if ( doc.eventType == "Cause" ){
+						c.push(doc);
+					}
+					else if ( doc.eventType == "Turning Point" ){
+						tp.push(doc);
+					}
+					else{
+						e.push(doc)
+					}
+				});
+				all["c"] = c;
+				all["tp"] = tp;
+				all["e"] = e;
+				return all;
+			});
+			this.causes = x.c;
+			this.turningP = x.tp;
+			this.effects = x.e;
 		}
 	},
 	mounted() {

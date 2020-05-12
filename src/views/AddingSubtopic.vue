@@ -2,7 +2,7 @@
 	<div id="app">
 	<v-container>
 		<h1 class="pt-5">Add a Subtopic</h1>
-		<blockquote class="blockquote mb-5 pb-5">Fill the following form to add topics and subtopics to the home web page</blockquote>
+		<blockquote class="blockquote mb-3 pb-5">Fill the following form to add topics and subtopics to the home web page</blockquote>
 		<hr>
 		<!-- CHOOSING topic -->	
 		<div style="height: 50px;"></div>	

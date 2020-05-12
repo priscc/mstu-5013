@@ -2,22 +2,21 @@
 	<div id="app">
 	<v-container>
 		<h1 class="pt-5">Add an Event</h1>
-		<blockquote class="blockquote mb-5 pb-5">Fill the following form to add topics and subtopics to the home web page</blockquote>
+		<blockquote class="blockquote mb-3 pb-5">Fill the following form to add topics and subtopics to the home web page</blockquote>
 		<hr>
 
-<!-- HIDDEN event form -->
+		<!-- HIDDEN event form -->
 		<div style="height: 50px;"></div>
 		<h2 class="pb-5">Add event to subtopic:</h2>
 		<v-row>
 			<v-col cols="12">
-				
-				 <v-text-field disabled v-model="subtopic" label="Selected subtopic: American Revolution" outlined shaped ><v-icon slot="append" >fas fa-search</v-icon></v-text-field>
+				 <v-text-field disabled label="Selected subtopic: American Revolution" outlined shaped ><v-icon slot="append" >fas fa-search</v-icon></v-text-field>
         	</v-col>
 		</v-row>
 		<v-row>
 			<v-col>
 				<!-- Type of Event -->
-				Select event type:<v-select disabled v-model="createdEvent.selectedEventType" :items="typeOfEvent"label="Event" outlined >Cause</v-select>
+				Select event type:<v-select v-model="createdEvent.eventType" :items="typeOfEvent" outlined ></v-select>
 				<!-- Event Title -->
 				<v-text-field label="Enter event title:" autocomplete="off" v-model="createdEvent.eventTitle"></v-text-field>
 					<v-menu  ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="290px">
@@ -36,10 +35,11 @@
 		<!-- Submit Button -->
 		<v-row class="pt-5">
 			<v-col class="d-flex align-end flex-column">
-				<v-btn large outlined color="success" v-on:click.prevent="submitData">SUBMIT</v-btn>
+				<v-btn large color="success" v-on:click.prevent="submitData">SUBMIT</v-btn>
+				<v-btn disabled large outlined color="error" class="mt-4" v-on:click="reset" > Reset Form </v-btn>
 			</v-col>
 		</v-row>
-					
+	</v-form>
 	</v-container>
 	</div>
 </template>
@@ -54,7 +54,7 @@ export default {
 			subtopic: "americanrevolution",
 			createdEvent: {
 				contentType: "Events",
-				eventType: "Cause",
+				eventType: "",
 				eventTitle: "",
 				date: null,
 				content: ""

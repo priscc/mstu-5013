@@ -61,7 +61,7 @@ export default {
 		position: absolute;
 		top: 0px;
 		left: 0px;
-		background-image: url("https://i7.pngguru.com/preview/653/502/366/postage-stamps-clip-art-draft.jpg");
+		background-image: url("https://www.thinkoutsidetheslide.com/wp-content/uploads/2019/10/DRAFT-background.jpg");
 		background-size: 100% 100%;
 		/*background-position: 30px 30px;*/
 		background-repeat: no-repeat;
