@@ -1,5 +1,3 @@
-# ap-study-bit2
-
 ## Project setup
 ```
 npm install
